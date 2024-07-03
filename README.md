@@ -1,6 +1,6 @@
 # Xena
 
-Xena is a warpper code that utilizes ``ACROPOLIS`` (https://github.com/hep-mh/acropolis/) to handle the process of photodisintegration for more specific BSM scenarios that are not part of the core ``ACROPOLIS`` package
+``Xena`` is a warpper code that utilizes ``ACROPOLIS`` (https://github.com/hep-mh/acropolis/) to handle the process of photodisintegration for more specific BSM scenarios that are not part of the core ``ACROPOLIS`` package
 
 # How to run
 
