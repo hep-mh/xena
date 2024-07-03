@@ -1,5 +1,9 @@
-# Test files
-*test*
+# Test scripts
+process.py
+*_old.dat
+
+# Output files
+*bbundance_file.dat
 
 # Byte-compiled / optimized / DLL files
 __pycache__
