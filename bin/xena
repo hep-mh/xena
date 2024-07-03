@@ -29,8 +29,7 @@ class NeutrinoCascadeModel(AbstractModel):
     def __init__(self, io_directory):
         if not universal:
             print_error(
-                "NeutrinoCascadeModel requires 'universal = True'.",
-                "xena.models.NeutrinoCascadeModel"
+                "NeutrinoCascadeModel requires 'universal = True'."
             )
         
         self._sII = InputInterface( io_directory, type="dir" )
@@ -39,7 +38,6 @@ class NeutrinoCascadeModel(AbstractModel):
         if not all(element in self._sII.param_keys() for element in ["mphi", "tau", "eta"]):
             print_error(
                 f"Not all required parameters are present in {io_directory}/param_file.dat.",
-                "xena.models.NeutrinoCascadeModel"
             )
 
         # -->
