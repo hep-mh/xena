@@ -1,0 +1,60 @@
+#! /usr/bin/env python3
+
+# numpy
+import numpy as np
+# sys
+import sys
+# os
+import os
+
+# pprint
+from acropolis.pprint import print_error, print_info, print_Yf, disable_color
+
+_verbose_level = 4
+
+# models
+from xena.models import NeutrinoCascadeModel
+
+
+if __name__ == "__main__":
+    use_color = True
+    # -->
+    if use_color:
+        col = "\x1B[38;5;209m"
+        end = "\x1B[0m"
+    else:
+        col = end = ""
+
+        disable_color()
+
+    print(f"{col}Xena v1.0{end}\n")
+
+    io_directory = "io/test"
+
+    if len(sys.argv) >= 2:
+        io_directory = sys.argv[1]
+
+    if not os.path.isdir(io_directory):
+        print_error(f"Could not find directory '{io_directory}'", loc="foo")
+    
+    print_info(f"Using '{io_directory}' to read and write data.", verbose_level=_verbose_level)
+    print_info(f"Using cosmological data from '{io_directory}/cosmo_file.dat'.", verbose_level=_verbose_level)
+    print_info(f"Using parameters from '{io_directory}/param_file.dat'.", verbose_level=_verbose_level)
+    print_info(f"Using initial abundances from '{io_directory}/abundance_file.dat'.", verbose_level=_verbose_level)
+
+    # Initialize the model
+    model = NeutrinoCascadeModel(io_directory)
+
+    # Run Photodisintegration
+    print_info(f"Running photodisintegration...", verbose_level=_verbose_level, eol="", flush=True)
+    Yf = model.run_disintegration()
+    print("Done!")
+
+    print_info("The final abundances are:")
+
+    print_Yf(Yf)
+    print()
+
+    np.savetxt(f"{io_directory}/bbundance_file.dat", Yf)
+
+    print_info(f"The final abundances have been written to '{io_directory}/bbundance_file.dat'.", verbose_level=_verbose_level)
