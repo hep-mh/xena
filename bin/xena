@@ -20,6 +20,7 @@ from acropolis.pprint import print_error, print_info, print_Yf, disable_color
 # params
 from acropolis.params import universal
 
+
 _verbose_level = 4
 
 
@@ -97,10 +98,10 @@ if __name__ == "__main__":
     if model_class not in globals() or not issubclass(globals()[model_class], AbstractModel):
         print_error(f"Could not find a class with name '{model_class}' that is a subclass of 'acropolis.models.AbstractModel'.")
 
-    print_info(f"Using the model '{model_class}'.")
+    print_info(f"Using the model '{model_class}'."                                  , verbose_level=_verbose_level)
     print_info(f"Using the directory '{io_directory}' to read and write data."      , verbose_level=_verbose_level)
-    print_info(f"Using cosmological data from '{io_directory}/cosmo_file.dat'."     , verbose_level=_verbose_level)
     print_info(f"Using parameters from '{io_directory}/param_file.dat'."            , verbose_level=_verbose_level)
+    print_info(f"Using cosmological data from '{io_directory}/cosmo_file.dat'."     , verbose_level=_verbose_level)
     print_info(f"Using initial abundances from '{io_directory}/abundance_file.dat'.", verbose_level=_verbose_level)
 
     # Initialize the model

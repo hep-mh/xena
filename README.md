@@ -20,8 +20,8 @@ Xena v1.0 (using ACROPOLIS v1.2.3)
 
 INFO   : Using the model 'NeutrinoCascadeModel'.
 INFO   : Using the directory 'io/test' to read and write data.
-INFO   : Using cosmological data from 'io/test/cosmo_file.dat'.
 INFO   : Using parameters from 'io/test/param_file.dat'.
+INFO   : Using cosmological data from 'io/test/cosmo_file.dat'.
 INFO   : Using initial abundances from 'io/test/abundance_file.dat'.
 INFO   : Running photodisintegration...Done!
 INFO   : The final abundances are:
