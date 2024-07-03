@@ -40,3 +40,12 @@ INFO   : The final abundances are:
 
 INFO   : The final abundances have been written to 'io/test/bbundance_file.dat'.
 ```
+
+## The cosmo-file
+``Xena`` expects a cosmo-file with name ``cosmo_file.dat`` in ``<io_directory>`` with the same column structure and units as ``ACROPOLIS``, i.e.
+* time in s
+* temperature in MeV
+* dTdt in MeV²
+* neutrino temperature in MeV
+* hubble rate in MeV
+* nb/eta final ratio in MeV³
