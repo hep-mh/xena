@@ -12,7 +12,7 @@ Afterwards activate the virtual environment and run
 ```
 ./bin/xena <model_class> <io_directory>
 ```
-Here, both command-line arguments are mandatory. The argument ``<model_class>`` is the name of the model to use (currently only ``CascadeNeutrinoModel`` is supported), and the argument ``<io_directory>`` is the directory where to find ``cosmo_file.dat``, etc.
+Here, both command-line arguments are mandatory. The argument ``<model_class>`` is the name of the model to use (currently only ``CascadeNeutrinoModel`` is supported), and the argument ``<io_directory>`` is the directory where to find ``cosmo_file.dat``, ``param_file.dat`` and ``abundance_file.dat``
 
 An example output of running ``./bin/xena NeutrinoCascadeModel io/test`` would be
 ```
@@ -40,6 +40,15 @@ INFO   : The final abundances are:
 
 INFO   : The final abundances have been written to 'io/test/bbundance_file.dat'.
 ```
+
+## The abundance-file
+``Xena`` expects an abundance-file with name ``abundance_file.dat`` in ``<io_directory>`` with the same structure as ``ACROPOLIS``
+
+
+## The param-file
+``Xena`` expects a param-file with name ``param_file.dat`` in ``<io_directory>`` with at least one line that reads eta=<eta>, e.g. eta=6.137e-10
+
+When using either ``CascadeNeutrinoModel`` or ``EmDecayModel``, ``Xena`` further expects entries for ``mphi`` [in MeV] and ``tau`` [in s]
 
 ## The cosmo-file
 ``Xena`` expects a cosmo-file with name ``cosmo_file.dat`` in ``<io_directory>`` with the column structure
