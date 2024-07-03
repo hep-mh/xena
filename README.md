@@ -1,18 +1,18 @@
 # Xena
 
-``Xena`` is a warpper code that utilizes ``ACROPOLIS`` (https://github.com/hep-mh/acropolis/) to handle the process of photodisintegration for more specific BSM scenarios that are not part of the core ``ACROPOLIS`` package
+A wrapper code that utilizes ``ACROPOLIS`` (https://github.com/hep-mh/acropolis/) to handle the process of photodisintegration for more specific BSM scenarios that are not part of the core ``ACROPOLIS`` package
 
 # How to run
 
-First install the dev branch of ``ACROPOLIS`` in a virtual environment via
+First install the xena branch of ``ACROPOLIS`` in a virtual environment via
 ```
-pip3 install git+https://github.com/hep-mh/acropolis.git@dev
+pip3 install git+https://github.com/hep-mh/acropolis.git@xena
 ```
 Afterwards activate the virtual environment and run
 ```
 ./bin/xena <model_class> <io_directory>
 ```
-Here, both command-line arguments are mandatory. The argument ``<model_class>`` is the name of the model to use (currently only CascadeNeutrinoModel is supported), and the argument ``<io_directory>`` is the directory where to find ``cosmo_file.dat``, etc.
+Here, both command-line arguments are mandatory. The argument ``<model_class>`` is the name of the model to use (currently only ``CascadeNeutrinoModel`` is supported), and the argument ``<io_directory>`` is the directory where to find ``cosmo_file.dat``, etc.
 
 An example output of running ``./bin/xena NeutrinoCascadeModel io/test`` would be
 ```
@@ -42,10 +42,16 @@ INFO   : The final abundances have been written to 'io/test/bbundance_file.dat'.
 ```
 
 ## The cosmo-file
-``Xena`` expects a cosmo-file with name ``cosmo_file.dat`` in ``<io_directory>`` with the same column structure and units as ``ACROPOLIS``, i.e.
-* time in s
-* temperature in MeV
+``Xena`` expects a cosmo-file with name ``cosmo_file.dat`` in ``<io_directory>`` with the column structure
+* t in s
+* T in MeV
 * dTdt in MeV²
-* neutrino temperature in MeV
-* hubble rate in MeV
-* nb/eta final ratio in MeV³
+* Tnu in MeV
+* H in MeV
+* nb/etaf in MeV³
+
+When using the model ``NeutrinoCascadeModel``, ``Xena`` aditionally expects a seventh column with
+* S in MeV⁴
+
+When using the model ``EmDecayModel``, ``Xena``additionally expects a seventh column with
+* nphi in MeV³
