@@ -1,5 +1,7 @@
 #! /usr/bin/env python3
 
+# math
+from math import log10
 # numpy
 import numpy as np
 # sys
@@ -7,13 +9,65 @@ import sys
 # os
 import os
 
+# info
+from acropolis.info import version, dev_version
+# input
+from acropolis.input import InputInterface
+# models
+from acropolis.models import AbstractModel
 # pprint
 from acropolis.pprint import print_error, print_info, print_Yf, disable_color
+# params
+from acropolis.params import universal
 
 _verbose_level = 4
 
-# models
-from xena.models import NeutrinoCascadeModel
+
+class NeutrinoCascadeModel(AbstractModel):
+    
+    def __init__(self, io_directory):
+        if not universal:
+            print_error(
+                "NeutrinoCascadeModel requires 'universal = True'.",
+                "xena.models.NeutrinoCascadeModel"
+            )
+        
+        self._sII = InputInterface( io_directory, type="dir" )
+
+        # Check if all required parameters are present
+        if not all(element in self._sII.param_keys() for element in ["mphi", "tau", "eta"]):
+            print_error(
+                f"Not all required parameters are present in {io_directory}/param_file.dat.",
+                "xena.models.NeutrinoCascadeModel"
+            )
+
+        # -->
+        self._sMphi = self._sII.parameter("mphi")
+        self._sTau  = self._sII.parameter("tau")
+
+        # Call the super constructor
+        super(NeutrinoCascadeModel, self).__init__(self._sMphi/2., self._sII)
+    
+    # ABSTRACT METHODS ##################################################################
+
+    def _temperature_range(self):
+        # Calculate the approximate decay temperature
+        Td = self._sII.temperature( self._sTau )
+        # Calculate Tmin and Tmax from Td
+        Td_ofm = log10(Td)
+
+        Tmin = 10.**(Td_ofm - 2.00)
+        Tmax = 10.**(Td_ofm + 1.10)
+
+        return (Tmin, Tmax)
+
+
+    def _source_photon_0(self, T):
+        return self._sII.cosmo_column(6, T)
+
+
+    def _source_electron_0(self, T):
+        return 0.
 
 
 if __name__ == "__main__":
@@ -27,15 +81,17 @@ if __name__ == "__main__":
 
         disable_color()
 
-    print(f"{col}Xena v1.0{end}\n")
+    # Print the header
+    print(f"{col}Xena v1.0 (using ACROPOLIS v{version}{' [dev]' if dev_version != version else ''}){end}\n")
 
-    io_directory = "io/test"
-
+    # Process the IO directory
     if len(sys.argv) >= 2:
         io_directory = sys.argv[1]
+    else:
+        print_error(f"Xena requires one command-line argument <io_directory>.")
 
     if not os.path.isdir(io_directory):
-        print_error(f"Could not find directory '{io_directory}'", loc="foo")
+        print_error(f"Could not find directory '{io_directory}'.")
     
     print_info(f"Using '{io_directory}' to read and write data.", verbose_level=_verbose_level)
     print_info(f"Using cosmological data from '{io_directory}/cosmo_file.dat'.", verbose_level=_verbose_level)
@@ -45,16 +101,18 @@ if __name__ == "__main__":
     # Initialize the model
     model = NeutrinoCascadeModel(io_directory)
 
-    # Run Photodisintegration
+    # Run photodisintegration
     print_info(f"Running photodisintegration...", verbose_level=_verbose_level, eol="", flush=True)
     Yf = model.run_disintegration()
     print("Done!")
 
+    # Print the final abundances
     print_info("The final abundances are:")
 
     print_Yf(Yf)
     print()
 
+    # Write the file abundances to the bbundance-file
     np.savetxt(f"{io_directory}/bbundance_file.dat", Yf)
 
     print_info(f"The final abundances have been written to '{io_directory}/bbundance_file.dat'.", verbose_level=_verbose_level)
