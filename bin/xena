@@ -85,24 +85,29 @@ if __name__ == "__main__":
     print(f"{col}Xena v1.0 (using ACROPOLIS v{version}{' [dev]' if dev_version != version else ''}){end}\n")
 
     # Process the IO directory
-    if len(sys.argv) >= 2:
-        io_directory = sys.argv[1]
+    if len(sys.argv) >= 3:
+        model_class = sys.argv[1]
+        io_directory = sys.argv[2]
     else:
-        print_error(f"Xena requires one command-line argument <io_directory>.")
+        print_error("Xena requires two command-line arguments: <model_class> and <io_directory>.")
 
     if not os.path.isdir(io_directory):
         print_error(f"Could not find directory '{io_directory}'.")
     
-    print_info(f"Using '{io_directory}' to read and write data.", verbose_level=_verbose_level)
+    if model_class not in globals() or not issubclass(globals()[model_class], AbstractModel):
+        print_error(f"Could not find a class with name '{model_class}' that is a subclass of 'acropolis.models.AbstractModel'.")
+
+    print_info(f"Using the model '{model_class}'.")
+    print_info(f"Using the directory '{io_directory}' to read and write data.", verbose_level=_verbose_level)
     print_info(f"Using cosmological data from '{io_directory}/cosmo_file.dat'.", verbose_level=_verbose_level)
     print_info(f"Using parameters from '{io_directory}/param_file.dat'.", verbose_level=_verbose_level)
     print_info(f"Using initial abundances from '{io_directory}/abundance_file.dat'.", verbose_level=_verbose_level)
 
     # Initialize the model
-    model = NeutrinoCascadeModel(io_directory)
+    model = globals()[model_class](io_directory)
 
     # Run photodisintegration
-    print_info(f"Running photodisintegration...", verbose_level=_verbose_level, eol="", flush=True)
+    print_info("Running photodisintegration...", verbose_level=_verbose_level, eol="", flush=True)
     Yf = model.run_disintegration()
     print("Done!")
 

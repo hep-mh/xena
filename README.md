@@ -10,18 +10,19 @@ pip3 install git+https://github.com/hep-mh/acropolis.git@dev
 ```
 Afterwards activate the virtual environment and run
 ```
-./bin/xena <io_directory>
+./bin/xena <model_class> <io_directory>
 ```
-Here, the argument ``<io_directory>`` is mandatory.
+Here, both command-line arguments are mandatory. The argument ``<model_class>`` is the name of the model to use (currently only CascadeNeutrinoModel is supported), and the argument ``<io_directory>`` is the directory where to find ``cosmo_file.dat``, etc.
 
-An example output would be
+An example output of running ``./bin/xena NeutrinoCascadeModel io/test`` would be
 ```
 Xena v1.0 (using ACROPOLIS v1.2.3)
 
-INFO   : Using 'io/test/' to read and write data.
-INFO   : Using cosmological data from 'io/test//cosmo_file.dat'.
-INFO   : Using parameters from 'io/test//param_file.dat'.
-INFO   : Using initial abundances from 'io/test//abundance_file.dat'.
+INFO   : Using the model 'NeutrinoCascadeModel'.
+INFO   : Using the directory 'io/test' to read and write data.
+INFO   : Using cosmological data from 'io/test/cosmo_file.dat'.
+INFO   : Using parameters from 'io/test/param_file.dat'.
+INFO   : Using initial abundances from 'io/test/abundance_file.dat'.
 INFO   : Running photodisintegration...Done!
 INFO   : The final abundances are:
 
@@ -37,5 +38,5 @@ INFO   : The final abundances are:
  Li7 | 3.52463e-10 | 3.15407e-10 | 3.38005e-10
  Be7 | 0.00000e+00 | 0.00000e+00 | 0.00000e+00  [decayed]
 
-INFO   : The final abundances have been written to 'io/test//bbundance_file.dat'.
+INFO   : The final abundances have been written to 'io/test/bbundance_file.dat'.
 ```
