@@ -4,7 +4,7 @@ Xena is a warpper code that utilizes ``ACROPOLIS`` (https://github.com/hep-mh/ac
 
 # How to run
 
-First install the dev branch of ACROPOLIS in a virtual environment via
+First install the dev branch of ``ACROPOLIS`` in a virtual environment via
 ```
 pip3 install git+https://github.com/hep-mh/acropolis.git@dev
 ```
