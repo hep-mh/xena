@@ -1,6 +1,6 @@
-# Xena
+# Xena - The Photodisintegration Princess
 
-A wrapper code that utilizes ``ACROPOLIS`` (https://github.com/hep-mh/acropolis/) to handle the process of photodisintegration for more specific BSM scenarios that are not part of the core ``ACROPOLIS`` package
+A wrapper code around ``ACROPOLIS`` (https://github.com/hep-mh/acropolis/) which can handle the process of photodisintegration for more specific BSM scenarios that are not part of the core ``ACROPOLIS`` package
 
 # How to run
 
