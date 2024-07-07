@@ -1,7 +1,12 @@
 # Xena - The Photodisintegration Princess
 
-About
 A wrapper code around ``ACROPOLIS`` (https://github.com/hep-mh/acropolis/) to calculate photodisintegration constraints for more specific BSM scenarios that are not part of the core ``ACROPOLIS`` package
+
+| Input              | Output             |
+| ------------------ | ------------------ |
+| param_file.dat     | bbundance_file.dat |
+| cosmo_file.dat     |                    |
+| abundance_file.dat | 
 
 # How to run
 
