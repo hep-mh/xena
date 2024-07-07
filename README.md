@@ -55,7 +55,7 @@ INFO   : The final abundances have been written to 'io/test/bbundance_file.dat'.
 ## The param-file
 ``Xena`` expects a param-file with name ``param_file.dat`` in ``<io_directory>`` with at least one line that reads ``eta=<eta>``, e.g. ``eta=6.137e-10``
 
-When using either ``CascadeNeutrinoModel`` or ``EmDecayModel``, ``Xena`` further expects entries for ``mphi`` [in MeV] and ``tau`` [in s]
+When using either ``CascadeNeutrinoModel`` or ``EmDecayModel``, ``Xena`` further expects entries for ``mphi`` [in MeV] and ``tau`` [in s], as well as for ``bree`` and ``braa`` in the latter case.
 
 ## The cosmo-file
 ``Xena`` expects a cosmo-file with name ``cosmo_file.dat`` in ``<io_directory>`` with the column structure
