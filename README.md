@@ -4,11 +4,11 @@ A wrapper code around ``ACROPOLIS`` (https://github.com/hep-mh/acropolis/) which
 
 # How to run
 
-First install the xena branch of ``ACROPOLIS`` in a virtual environment via
+First install the ``dev`` branch of ``ACROPOLIS`` (preferably in a virtual environment) via
 ```
-pip3 install git+https://github.com/hep-mh/acropolis.git@xena
+pip3 install git+https://github.com/hep-mh/acropolis.git@dev
 ```
-Afterwards activate the virtual environment and run
+Afterwards run
 ```
 ./bin/xena <model_class> <io_directory>
 ```
@@ -19,6 +19,7 @@ An example output of running ``./bin/xena NeutrinoCascadeModel io/test`` would b
 Xena v1.0 (using ACROPOLIS v1.2.3)
 
 INFO   : Using the model 'NeutrinoCascadeModel'.
+INFO   : Using 'universal = True' as requested by the model.
 INFO   : Using the directory 'io/test' to read and write data.
 INFO   : Using parameters from 'io/test/param_file.dat'.
 INFO   : Using cosmological data from 'io/test/cosmo_file.dat'.
@@ -26,17 +27,17 @@ INFO   : Using initial abundances from 'io/test/abundance_file.dat'.
 INFO   : Running photodisintegration...Done!
 INFO   : The final abundances are:
 
-     |    mean     |    high     |    low     
-----------------------------------------------
-   n | 0.00000e+00 | 0.00000e+00 | 0.00000e+00  [decayed]
-   p | 7.52917e-01 | 7.52879e-01 | 7.52957e-01
-  H2 | 1.89239e-05 | 1.85288e-05 | 1.93290e-05
-  H3 | 0.00000e+00 | 0.00000e+00 | 0.00000e+00  [decayed]
- He3 | 7.77458e-06 | 7.83113e-06 | 7.72408e-06
- He4 | 6.17541e-02 | 6.17639e-02 | 6.17441e-02
- Li6 | 8.22735e-15 | 2.79365e-14 | 1.29479e-15
- Li7 | 3.52463e-10 | 3.15407e-10 | 3.38005e-10
- Be7 | 0.00000e+00 | 0.00000e+00 | 0.00000e+00  [decayed]
+     |     mean     |     high     |     low     
+-------------------------------------------------
+   n | 0.000000e+00 | 0.000000e+00 | 0.000000e+00  [decayed]
+   p | 7.529170e-01 | 7.528786e-01 | 7.529565e-01
+  H2 | 1.892391e-05 | 1.852884e-05 | 1.932896e-05
+  H3 | 0.000000e+00 | 0.000000e+00 | 0.000000e+00  [decayed]
+ He3 | 7.774584e-06 | 7.831135e-06 | 7.724084e-06
+ He4 | 6.175413e-02 | 6.176388e-02 | 6.174408e-02
+ Li6 | 8.227352e-15 | 2.793651e-14 | 1.294786e-15
+ Li7 | 3.524633e-10 | 3.154068e-10 | 3.380052e-10
+ Be7 | 0.000000e+00 | 0.000000e+00 | 0.000000e+00  [decayed]
 
 INFO   : The final abundances have been written to 'io/test/bbundance_file.dat'.
 ```

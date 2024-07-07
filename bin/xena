@@ -17,8 +17,8 @@ from acropolis.input import InputInterface
 from acropolis.models import AbstractModel
 # pprint
 from acropolis.pprint import print_error, print_info, print_Yf, disable_color
-# params
-from acropolis.params import universal
+# flags
+import acropolis.flags as flags
 
 
 _verbose_level = 4
@@ -27,7 +27,7 @@ _verbose_level = 4
 class NeutrinoCascadeModel(AbstractModel):
     
     def __init__(self, io_directory):
-        if not universal:
+        if not flags.universal:
             print_error(
                 "NeutrinoCascadeModel requires 'universal = True'."
             )
@@ -83,9 +83,9 @@ if __name__ == "__main__":
     # Print the header
     print(f"{col}Xena v1.0 (using ACROPOLIS v{version}{' [dev]' if dev_version != version else ''}){end}\n")
 
-    # Process the IO directory
+    # Extract the command-line arguments
     if len(sys.argv) >= 3:
-        model_class = sys.argv[1]
+        model_class  = sys.argv[1]
         io_directory = sys.argv[2]
     else:
         print_error("Xena requires two command-line arguments: <model_class> and <io_directory>.")
@@ -96,7 +96,14 @@ if __name__ == "__main__":
     if model_class not in globals() or not issubclass(globals()[model_class], AbstractModel):
         print_error(f"Could not find a class with name '{model_class}' that is a subclass of 'acropolis.models.AbstractModel'.")
 
+    # Print initial information
     print_info(f"Using the model '{model_class}'."                                  , verbose_level=_verbose_level)
+
+    if model_class == "NeutrinoCascadeModel":
+        flags.set_universal(True)
+
+        print_info("Using 'universal = True' as requested by the model."            , verbose_level=_verbose_level)
+
     print_info(f"Using the directory '{io_directory}' to read and write data."      , verbose_level=_verbose_level)
     print_info(f"Using parameters from '{io_directory}/param_file.dat'."            , verbose_level=_verbose_level)
     print_info(f"Using cosmological data from '{io_directory}/cosmo_file.dat'."     , verbose_level=_verbose_level)
@@ -116,7 +123,7 @@ if __name__ == "__main__":
     print_Yf(Yf)
     print()
 
-    # Write the file abundances to the bbundance-file
+    # Write the final abundances to the bbundance-file
     np.savetxt(f"{io_directory}/bbundance_file.dat", Yf)
 
     print_info(f"The final abundances have been written to '{io_directory}/bbundance_file.dat'.", verbose_level=_verbose_level)
