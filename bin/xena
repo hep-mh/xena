@@ -124,6 +124,6 @@ if __name__ == "__main__":
     print()
 
     # Write the final abundances to the bbundance-file
-    np.savetxt(f"{io_directory}/bbundance_file.dat", Yf)
+    np.savetxt(f"{io_directory}/bbundance_file.dat", Yf, fmt="%.12e")
 
     print_info(f"The final abundances have been written to '{io_directory}/bbundance_file.dat'.", verbose_level=_verbose_level)
