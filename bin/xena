@@ -102,7 +102,7 @@ if __name__ == "__main__":
     if model_class == "NeutrinoCascadeModel":
         flags.set_universal(True)
 
-        print_info("Using 'universal = True' as requested by the model."            , verbose_level=_verbose_level)
+        print_info("Using 'universal = True' as required by the model."             , verbose_level=_verbose_level)
 
     print_info(f"Using the directory '{io_directory}' to read and write data."      , verbose_level=_verbose_level)
     print_info(f"Using parameters from '{io_directory}/param_file.dat'."            , verbose_level=_verbose_level)
