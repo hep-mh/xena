@@ -58,6 +58,8 @@ class NeutrinoCascadeModel(AbstractModel):
         Tmin = 10.**(Td_ofm - 2.00)
         Tmax = 10.**(Td_ofm + 1.10)
 
+        print(Tmin, Tmax)
+
         return (Tmin, Tmax)
 
 
