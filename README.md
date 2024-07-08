@@ -25,7 +25,7 @@ An example output of running ``./bin/xena NeutrinoCascadeModel io/test`` would b
 Xena v1.0 (using ACROPOLIS v1.2.3)
 
 INFO   : Using the model 'NeutrinoCascadeModel'.
-INFO   : Using 'universal = True' as requested by the model.
+INFO   : Using 'universal = True' as required by the model.
 INFO   : Using the directory 'io/test' to read and write data.
 INFO   : Using parameters from 'io/test/param_file.dat'.
 INFO   : Using cosmological data from 'io/test/cosmo_file.dat'.
