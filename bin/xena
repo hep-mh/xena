@@ -26,6 +26,7 @@ from acropolis.params import alpha, pi, hbar, me2
 _verbose_level = 4
 
 
+# NEUTRINO CASCADES ###########################################################
 class NeutrinoCascadeModel(AbstractModel):
     
     def __init__(self, io_directory):
@@ -49,7 +50,6 @@ class NeutrinoCascadeModel(AbstractModel):
         # Call the super constructor
         super(NeutrinoCascadeModel, self).__init__(self._sMphi/2., self._sII)
     
-    # ABSTRACT METHODS ####################################
 
     def _temperature_range(self):
         # Calculate the approximate decay temperature
@@ -71,6 +71,7 @@ class NeutrinoCascadeModel(AbstractModel):
         return 0.
 
 
+# ELECTROMAGNETIC DECAYS ######################################################
 class EmDecayModel(AbstractModel):
 
     def __init__(self, io_directory):
@@ -94,8 +95,7 @@ class EmDecayModel(AbstractModel):
         self._sBRee = self._sII.parameter("BRee")
 
         super(EmDecayModel, self).__init__(self._sMphi/2., self._sII)
-    
-    # ABSTRACT METHODS ####################################
+
 
     def _temperature_range(self):
         # Calculate the approximate decay temperature
@@ -131,6 +131,7 @@ class EmDecayModel(AbstractModel):
         return (_sp/EX) * (alpha/pi) * ( 1. + (1.-x)**2. )/x * log( (1.-x)/y )
 
 
+# MAIN FUNCTION ###############################################################
 if __name__ == "__main__":
     use_color = True
     # -->
