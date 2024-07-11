@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 # math
-from math import log10
+from math import log10, log
 # numpy
 import numpy as np
 # sys
@@ -19,6 +19,8 @@ from acropolis.models import AbstractModel
 from acropolis.pprint import print_error, print_info, print_Yf, disable_color
 # flags
 import acropolis.flags as flags
+# params
+from acropolis.params import alpha, pi, hbar, me2
 
 
 _verbose_level = 4
@@ -47,7 +49,7 @@ class NeutrinoCascadeModel(AbstractModel):
         # Call the super constructor
         super(NeutrinoCascadeModel, self).__init__(self._sMphi/2., self._sII)
     
-    # ABSTRACT METHODS ##################################################################
+    # ABSTRACT METHODS ####################################
 
     def _temperature_range(self):
         # Calculate the approximate decay temperature
@@ -67,6 +69,66 @@ class NeutrinoCascadeModel(AbstractModel):
 
     def _source_electron_0(self, T):
         return 0.
+
+
+class EmDecayModel(AbstractModel):
+
+    def __init__(self, io_directory):
+        if flags.universal:
+            print_error(
+                "EmDecayModel requires 'universal = False'."
+            )
+
+        self._sII = InputInterface( io_directory, type="dir" )
+
+        # Check if all required parameters are present
+        if not all(element in self._sII.param_keys() for element in ["mphi", "tau", "eta", "BRaa", "BRee"]):
+            print_error(
+                f"Not all required parameters are present in {io_directory}/param_file.dat.",
+            )
+        
+        # -->
+        self._sMphi = self._sII.parameter("mphi")
+        self._sTau  = self._sII.parameter("tau")
+        self._sBRaa = self._sII.parameter("BRaa")
+        self._sBRee = self._sII.parameter("BRee")
+
+        super(EmDecayModel, self).__init__(self._sMphi/2., self._sII)
+    
+    # ABSTRACT METHODS ####################################
+
+    def _temperature_range(self):
+        # Calculate the approximate decay temperature
+        Td = self._sII.temperature( self._sTau )
+        # Calculate Tmin and Tmax from Td
+        Td_ofm = log10(Td)
+
+        Tmin = 10.**(Td_ofm - 1.50)
+        Tmax = 10.**(Td_ofm + 0.50)
+
+        return (Tmin, Tmax)
+    
+
+    def _source_photon_0(self, T):
+        return self._sBRaa * 2. * self.sII.cosmo_column(6, T) * (hbar/self._sTau)
+
+
+    def _source_electron_0(self, T):
+        return self._sBRee * self.sII.cosmo_column(6, T) * (hbar/self._sTau)
+
+
+    def _source_photon_c(self, E, T):
+        EX = self._sMphi/2. # = E0
+
+        x = E/EX
+        y = me2/(4.*EX**2.)
+
+        if 1. - y < x:
+            return 0.
+
+        _sp = self._source_electron_0(T)
+
+        return (_sp/EX) * (alpha/pi) * ( 1. + (1.-x)**2. )/x * log( (1.-x)/y )
 
 
 if __name__ == "__main__":
