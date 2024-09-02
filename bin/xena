@@ -160,12 +160,12 @@ if __name__ == "__main__":
         print_error(f"Could not find a class with name '{model_class}' that is a subclass of 'acropolis.models.AbstractModel'.")
 
     # Print initial information
-    print_info(f"Using the model '{model_class}'."                                  , verbose_level=_verbose_level)
+    print_info(f"Using the model '{model_class}'.", verbose_level=_verbose_level)
 
     if model_class == "NeutrinoCascadeModel":
         flags.set_universal(True)
 
-        print_info("Using 'universal = True' as required by the model."             , verbose_level=_verbose_level)
+        print_info("Using 'universal = True' as required by the model.", verbose_level=_verbose_level)
 
     print_info(f"Using the directory '{io_directory}' to read and write data."      , verbose_level=_verbose_level)
     print_info(f"Using parameters from '{io_directory}/param_file.dat'."            , verbose_level=_verbose_level)
@@ -181,7 +181,7 @@ if __name__ == "__main__":
     print("Done!")
 
     # Print the final abundances
-    print_info("The final abundances are:")
+    print_info("The final abundances are:", verbose_level=_verbose_level)
 
     print_Yf(Yf)
     print()
