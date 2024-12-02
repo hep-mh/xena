@@ -10,9 +10,9 @@ A wrapper code around ``ACROPOLIS`` (https://github.com/hep-mh/acropolis/) to ca
 
 # How to run
 
-First install the ``dev`` branch of ``ACROPOLIS`` (preferably in a virtual environment) via
+First install ``ACROPOLIS`` (preferably in a virtual environment) via
 ```
-pip3 install git+https://github.com/hep-mh/acropolis.git@dev
+pip3 install git+https://github.com/hep-mh/acropolis.git
 ```
 Afterwards run
 ```
