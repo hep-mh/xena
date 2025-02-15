@@ -10,19 +10,19 @@ A wrapper code around ``ACROPOLIS`` (https://github.com/hep-mh/acropolis/) to ca
 
 # How to run
 
-First install ``ACROPOLIS`` (preferably in a virtual environment) via
+First install ``v2``(currently in alpha) of ``ACROPOLIS`` (preferably in a virtual environment) via
 ```
-pip3 install git+https://github.com/hep-mh/acropolis.git
+pip3 install git+https://github.com/hep-mh/acropolis.git@v2
 ```
 Afterwards run
 ```
 ./bin/xena <model_class> <io_directory>
 ```
-Here, both command-line arguments are mandatory. The argument ``<model_class>`` is the name of the model to use (currently only ``CascadeNeutrinoModel`` is supported), and the argument ``<io_directory>`` is the directory where to find ``cosmo_file.dat``, ``param_file.dat`` and ``abundance_file.dat``
+Here, both command-line arguments are mandatory. The argument ``<model_class>`` is the name of the model to use (currently only ``NeutrinoCascadeModel`` and ``EmDecayModel`` are supported), and the argument ``<io_directory>`` is the directory where to find ``cosmo_file.dat``, ``param_file.dat`` and ``abundance_file.dat``
 
 An example output of running ``./bin/xena NeutrinoCascadeModel io/test`` would be
 ```
-Xena v1.0 (using ACROPOLIS v1.2.3)
+Xena v1.0 (using ACROPOLIS v2.0.0 [dev])
 
 INFO   : Using the model 'NeutrinoCascadeModel'.
 INFO   : Using 'universal = True' as required by the model.
