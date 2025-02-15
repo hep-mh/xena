@@ -73,11 +73,17 @@ class NeutrinoCascadeModel(AbstractModel):
 
     # TEMP
     def _dndt_nucleon(self, T):
-        return self._sII.cosmo_column(8, T)
+        return [
+            self._sII.cosmo_column( 8, T),
+            self._sII.cosmo_column(10, T)
+        ]
     
     # TEMP
     def _K0_nucleon(self, T):
-        return self._sII.cosmo_column(9, T)
+        return [
+            self._sII.cosmo_column( 9, T),
+            self._sII.cosmo_column(11, T)
+        ]
 
 
 # ELECTROMAGNETIC DECAYS ######################################################
@@ -184,8 +190,8 @@ if __name__ == "__main__":
     # Initialize the model
     model = globals()[model_class](io_directory)
 
-    # Run photodisintegration
-    print_info("Running photodisintegration...", verbose_level=_verbose_level, eol="", flush=True)
+    # Run photo- and hadrodisintegration
+    print_info("Running photo- and hadrodisintegration...", verbose_level=_verbose_level, eol="", flush=True)
     Yf = model.run_disintegration()
     print("Done!")
 
