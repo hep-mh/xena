@@ -59,15 +59,20 @@ When using either ``CascadeNeutrinoModel`` or ``EmDecayModel``, ``Xena`` further
 
 ## The cosmo-file
 ``Xena`` expects a cosmo-file with name ``cosmo_file.dat`` in ``<io_directory>`` with the column structure
-* t in s
-* T in MeV
-* dTdt in MeV²
-* Tnu in MeV
-* H in MeV
-* nb/etaf in MeV³
+* ``t`` in s
+* ``T`` in MeV
+* ``dTdt`` in MeV²
+* ``Tnu`` in MeV
+* ``H`` in MeV
+* ``nb_etaf`` in MeV³
 
 When using the model ``NeutrinoCascadeModel``, ``Xena`` aditionally expects a seventh column with
-* S in MeV⁴
+* ``Sem`` in MeV⁴
+* ``Shd`` in MeV⁴
+* ``dndt_sc`` in MeV⁴
+* ``Khd_sc`` in MeV
+* ``dndt_sh`` in MeV⁴
+* ``Khd_sh`` in MeV
 
 When using the model ``EmDecayModel``, ``Xena``additionally expects a seventh column with
-* nphi in MeV³
+* ``nphi`` in MeV³
