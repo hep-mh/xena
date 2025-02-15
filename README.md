@@ -66,7 +66,7 @@ When using either ``CascadeNeutrinoModel`` or ``EmDecayModel``, ``Xena`` further
 * ``H`` in MeV
 * ``nb_etaf`` in MeV³
 
-When using the model ``NeutrinoCascadeModel``, ``Xena`` aditionally expects a seventh column with
+When using the model ``NeutrinoCascadeModel``, ``Xena`` aditionally expects six more column with
 * ``Sem`` in MeV⁴
 * ``Shd`` in MeV⁴
 * ``dndt_sc`` in MeV⁴
