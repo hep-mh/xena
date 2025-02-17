@@ -30,7 +30,7 @@ INFO   : Using the directory 'io/test' to read and write data.
 INFO   : Using parameters from 'io/test/param_file.dat'.
 INFO   : Using cosmological data from 'io/test/cosmo_file.dat'.
 INFO   : Using initial abundances from 'io/test/abundance_file.dat'.
-INFO   : Running photodisintegration...Done!
+INFO   : Running photo- and hadrodisintegration...Done!
 INFO   : The final abundances are:
 
      |     mean     |     high     |     low     
