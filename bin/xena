@@ -159,7 +159,9 @@ if __name__ == "__main__":
         disable_color()
 
     # Print the header
-    print(f"{col}Xena v1.0 (using ACROPOLIS v{version}{' [dev]' if dev_version != version else ''}){end}\n")
+    acropolis_version = f"{version}" if dev_version == version else f"{dev_version} [dev]"
+    # -->
+    print(f"{col}Xena v1.0 (using ACROPOLIS v{acropolis_version}){end}\n")
 
     # Extract the command-line arguments
     if len(sys.argv) >= 3:
