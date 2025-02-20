@@ -1,6 +1,6 @@
 # Xena - The Disintegration Princess
 
-![Language: Python3](https://img.shields.io/badge/Language-Python3-blue.svg?style=flat-square)
+![Language: Python](https://img.shields.io/badge/Language-Python-blue.svg?style=flat-square)
 
 A wrapper code around ``ACROPOLIS`` (https://github.com/hep-mh/acropolis/) to calculate photo- and hadrodisintegration constraints for more specific BSM scenarios that are not part of the core ``ACROPOLIS`` package
 
