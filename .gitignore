@@ -1,6 +1,5 @@
-# Test scripts
-process.py
-*_old.dat
+# .gitkeep files
+!.gitkeep
 
 # Output files
 *bbundance_file.dat
